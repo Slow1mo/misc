@@ -1,0 +1,59 @@
+//part of package
+package helloPC;
+
+//we import libraries
+import java.util.Scanner;
+
+//we name our new class NextPrime
+public class NextPrime {
+
+	// we make main method
+	public static void main(String[] args) {
+
+		Scanner console = new Scanner(System.in);
+
+		System.out.print("Enter number: ");
+
+		int n = console.nextInt();
+
+		System.out.println("Entered number is prime: " + validPrime(n));
+		if (validPrime(n) == false){
+		System.out.println("The next prime is: " + nextPrime(n));
+		}
+	}
+
+	// we make a method to test if integer is a prime
+	public static boolean validPrime(int n) {
+		int i;
+		boolean currentprime = true;
+		if (n == 2) {
+			return true;
+		}
+		if (n % 2 == 0 || n <= 1) {
+			currentprime = false;
+		} else {
+			for (i = 3; i <= Math.sqrt(n); i += 2) {
+				if (n % i == 0) {
+					currentprime = false;
+				}
+			}
+		}
+		return currentprime;
+	}
+
+	// we make method to find next prime
+	public static int nextPrime(int n) {
+
+	    int j = 2; 
+	    while (validPrime(n) == false) {
+	        n += 1;
+	        int k = (int) Math.ceil(Math.sqrt(n));
+	        for (int i = j; i <= k; i++) {
+	            if (n % i == 0) {
+	                break;
+	            } 
+	        }
+	    }
+	    return n;
+	}
+}
